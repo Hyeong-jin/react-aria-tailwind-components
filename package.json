@@ -1,12 +1,13 @@
 {
   "name": "gss-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "files": [
     "dist"
   ],
   "main": "./dist/gss-ui.umd.cjs",
   "module": "./dist/gss-ui.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/gss-ui.js",
