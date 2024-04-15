@@ -1,4 +1,17 @@
 {
+  "name": "gsui",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/gsui.umd.cjs",
+  "module": "./dist/gsui.js",
+  "exports": {
+    ".": {
+      "import": "./dist/gsui.js",
+      "require": "./dist/gsui.umd.cjs"
+    }
+  },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.5.3",

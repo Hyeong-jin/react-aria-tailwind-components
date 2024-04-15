@@ -26388,7 +26388,7 @@ function pE({ label: e, description: t, errorMessage: n, ...r }) {
 }
 let x8 = re({
   extend: Pe,
-  base: "px-5 py-2 text-sm text-center transition rounded-lg border border-black/10 dark:border-white/10 forced-colors:border-[ButtonBorder] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:shadow-none cursor-default forced-color-adjust-none",
+  base: "select-none px-5 py-2 text-sm text-center transition rounded-lg border border-black/10 dark:border-white/10 forced-colors:border-[ButtonBorder] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:shadow-none cursor-default forced-color-adjust-none",
   variants: {
     isSelected: {
       false: "bg-gray-100 hover:bg-gray-200 pressed:bg-gray-300 text-gray-800 dark:bg-zinc-600 dark:hover:bg-zinc-500 dark:pressed:bg-zinc-400 dark:text-zinc-100 forced-colors:!bg-[ButtonFace] forced-colors:!text-[ButtonText]",
@@ -26519,4 +26519,4 @@ export {
   Pe as focusRing,
   G7 as itemStyles
 };
-//# sourceMappingURL=gsui.mjs.map
+//# sourceMappingURL=gsui.js.map
