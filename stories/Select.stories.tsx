@@ -1,21 +1,22 @@
-import type { Meta } from '@storybook/react';
-import React from 'react';
-import { Form } from 'react-aria-components';
-import { Button } from '../src/Button';
-import { Select, SelectItem, SelectSection } from '../src/Select';
+import type { Meta } from '@storybook/react'
+import React from 'react'
+import { Form } from 'react-aria-components'
+import { Button } from '../src/Button'
+import { Select, SelectItem, SelectSection } from '../src/Select'
 
 const meta: Meta<typeof Select> = {
+  title: 'PICKERS/Select',
   component: Select,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
   tags: ['autodocs'],
   args: {
-    label: 'Ice cream flavor'
-  }
-};
+    label: 'Ice cream flavor',
+  },
+}
 
-export default meta;
+export default meta
 
 export const Example = (args: any) => (
   <Select {...args}>
@@ -24,12 +25,12 @@ export const Example = (args: any) => (
     <SelectItem>Strawberry</SelectItem>
     <SelectItem>Vanilla</SelectItem>
   </Select>
-);
+)
 
-export const DisabledItems = (args: any) => <Example {...args} />;
+export const DisabledItems = (args: any) => <Example {...args} />
 DisabledItems.args = {
-  disabledKeys: ['mint']
-};
+  disabledKeys: ['mint'],
+}
 
 export const Sections = (args: any) => (
   <Select {...args}>
@@ -54,19 +55,21 @@ export const Sections = (args: any) => (
       <SelectItem id="Potatoes">Potatoes</SelectItem>
     </SelectSection>
   </Select>
-);
+)
 
 Sections.args = {
-  label: 'Preferred fruit or vegetable'
-};
+  label: 'Preferred fruit or vegetable',
+}
 
 export const Validation = (args: any) => (
-  <Form className="flex flex-col gap-2 items-start">
+  <Form className="flex flex-col items-start gap-2">
     <Example {...args} />
-    <Button type="submit" variant="secondary">Submit</Button>
+    <Button type="submit" variant="secondary">
+      Submit
+    </Button>
   </Form>
-);
+)
 
 Validation.args = {
-  isRequired: true
-};
+  isRequired: true,
+}

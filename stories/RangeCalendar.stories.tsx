@@ -1,17 +1,18 @@
-import type { Meta } from '@storybook/react';
-import React from 'react';
-import { RangeCalendar } from '../src/RangeCalendar';
+import type { Meta } from '@storybook/react'
+import React from 'react'
+import { RangeCalendar } from '../src/RangeCalendar'
 
 const meta: Meta<typeof RangeCalendar> = {
+  title: 'DATE AND TIME/RangeCalendar',
   component: RangeCalendar,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-};
+  tags: ['autodocs'],
+}
 
-export default meta;
+export default meta
 
 export const Example = (args: any) => (
   <RangeCalendar aria-label="Trip dates" {...args} />
-);
+)

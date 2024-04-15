@@ -1,21 +1,22 @@
-import type { Meta } from '@storybook/react';
-import React from 'react';
-import { Slider } from '../src/Slider';
+import type { Meta } from '@storybook/react'
+import React from 'react'
+import { Slider } from '../src/Slider'
 
 const meta: Meta<typeof Slider> = {
+  title: 'FORMS/Slider',
   component: Slider,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-};
+  tags: ['autodocs'],
+}
 
-export default meta;
+export default meta
 
-export const Example = (args: any) => <Slider {...args} />;
+export const Example = (args: any) => <Slider {...args} />
 
 Example.args = {
   label: 'Range',
   defaultValue: [30, 60],
-  thumbLabels: ['start', 'end']
-};
+  thumbLabels: ['start', 'end'],
+}

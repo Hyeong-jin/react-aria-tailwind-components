@@ -1,15 +1,16 @@
-import type { Meta } from '@storybook/react';
-import React from 'react';
-import { Switch } from '../src/Switch';
+import type { Meta } from '@storybook/react'
+import React from 'react'
+import { Switch } from '../src/Switch'
 
 const meta: Meta<typeof Switch> = {
+  title: 'FORMS/Switch',
   component: Switch,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-};
+  tags: ['autodocs'],
+}
 
-export default meta;
+export default meta
 
-export const Example = (args: any) => <Switch {...args}>Wi-Fi</Switch>;
+export const Example = (args: any) => <Switch {...args}>Wi-Fi</Switch>

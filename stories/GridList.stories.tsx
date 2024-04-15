@@ -1,16 +1,17 @@
-import type { Meta } from '@storybook/react';
-import { GridList, GridListItem } from '../src/GridList';
-import React from 'react';
+import type { Meta } from '@storybook/react'
+import { GridList, GridListItem } from '../src/GridList'
+import React from 'react'
 
 const meta: Meta<typeof GridList> = {
+  title: 'COLLECTIONS/GridList',
   component: GridList,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-};
+  tags: ['autodocs'],
+}
 
-export default meta;
+export default meta
 
 export const Example = (args: any) => (
   <GridList aria-label="Ice cream flavors" {...args}>
@@ -19,15 +20,15 @@ export const Example = (args: any) => (
     <GridListItem id="strawberry">Strawberry</GridListItem>
     <GridListItem id="vanilla">Vanilla</GridListItem>
   </GridList>
-);
+)
 
 Example.args = {
   onAction: null,
-  selectionMode: 'multiple'
-};
+  selectionMode: 'multiple',
+}
 
-export const DisabledItems = (args: any) => <Example {...args} />;
+export const DisabledItems = (args: any) => <Example {...args} />
 DisabledItems.args = {
   ...Example.args,
-  disabledKeys: ['mint']
-};
+  disabledKeys: ['mint'],
+}

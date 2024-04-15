@@ -1,17 +1,18 @@
-import React from 'react';
-import { Breadcrumb, Breadcrumbs } from '../src/Breadcrumbs';
+import React from 'react'
+import { Breadcrumb, Breadcrumbs } from '../src/Breadcrumbs'
 
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react'
 
 const meta: Meta<typeof Breadcrumbs> = {
+  title: 'Navigation/Breadcrumbs',
   component: Breadcrumbs,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-};
+  tags: ['autodocs'],
+}
 
-export default meta;
+export default meta
 
 export const Example = (args: any) => (
   <Breadcrumbs {...args}>
@@ -19,4 +20,4 @@ export const Example = (args: any) => (
     <Breadcrumb href="/react-aria">React Aria</Breadcrumb>
     <Breadcrumb>Breadcrumbs</Breadcrumb>
   </Breadcrumbs>
-);
+)

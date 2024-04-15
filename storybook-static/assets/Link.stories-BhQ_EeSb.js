@@ -1,3 +1,0 @@
-import{j as m}from"./utils-2ykXyvw8.js";import{L as s}from"./Link-BhtAxiC8.js";import"./index-CBqU2yxZ.js";import"./_commonjsHelpers-BosuxZz1.js";import"./index-BtM5VmRH.js";const l={component:s,parameters:{layout:"centered"},tags:["autodocs"]},r=o=>m(s,{...o,children:"The missing link"});r.args={href:"https://www.imdb.com/title/tt6348138/",target:"_blank"};var e,t,a;r.parameters={...r.parameters,docs:{...(e=r.parameters)==null?void 0:e.docs,source:{originalSource:`(args: any) => <Link {...args}>
-    The missing link
-  </Link>`,...(a=(t=r.parameters)==null?void 0:t.docs)==null?void 0:a.source}}};const g=["Example"];export{r as Example,g as __namedExportsOrder,l as default};

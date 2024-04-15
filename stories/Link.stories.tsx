@@ -1,24 +1,21 @@
-import type { Meta } from '@storybook/react';
-import React from 'react';
-import { Link } from '../src/Link';
+import type { Meta } from '@storybook/react'
+import React from 'react'
+import { Link } from '../src/Link'
 
 const meta: Meta<typeof Link> = {
+  title: 'NAVIGATION/Link',
   component: Link,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-};
+  tags: ['autodocs'],
+}
 
-export default meta;
+export default meta
 
-export const Example = (args: any) => (
-  <Link {...args}>
-    The missing link
-  </Link>
-);
+export const Example = (args: any) => <Link {...args}>The missing link</Link>
 
 Example.args = {
   href: 'https://www.imdb.com/title/tt6348138/',
-  target: '_blank'
-};
+  target: '_blank',
+}

@@ -1,31 +1,34 @@
-import type { Meta } from '@storybook/react';
-import React from 'react';
-import { Form } from 'react-aria-components';
-import { Button } from '../src/Button';
-import { NumberField } from '../src/NumberField';
+import type { Meta } from '@storybook/react'
+import React from 'react'
+import { Form } from 'react-aria-components'
+import { Button } from '../src/Button'
+import { NumberField } from '../src/NumberField'
 
 const meta: Meta<typeof NumberField> = {
+  title: 'FORMS/NumberField',
   component: NumberField,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
   tags: ['autodocs'],
   args: {
-    label: 'Cookies'
-  }
-};
+    label: 'Cookies',
+  },
+}
 
-export default meta;
+export default meta
 
-export const Example = (args: any) => <NumberField {...args} />;
+export const Example = (args: any) => <NumberField {...args} />
 
 export const Validation = (args: any) => (
-  <Form className="flex flex-col gap-2 items-start">
+  <Form className="flex flex-col items-start gap-2">
     <NumberField {...args} />
-    <Button type="submit" variant="secondary">Submit</Button>
+    <Button type="submit" variant="secondary">
+      Submit
+    </Button>
   </Form>
-);
+)
 
 Validation.args = {
-  isRequired: true
-};
+  isRequired: true,
+}

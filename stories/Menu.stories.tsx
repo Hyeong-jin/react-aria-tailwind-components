@@ -1,24 +1,25 @@
-import type { Meta } from '@storybook/react';
-import { MoreHorizontal } from 'lucide-react';
-import React from 'react';
-import { MenuTrigger } from 'react-aria-components';
-import { Button } from '../src/Button';
-import { Menu, MenuItem, MenuSection, MenuSeparator } from '../src/Menu';
+import type { Meta } from '@storybook/react'
+import { MoreHorizontal } from 'lucide-react'
+import React from 'react'
+import { MenuTrigger } from 'react-aria-components'
+import { Button } from '../src/Button'
+import { Menu, MenuItem, MenuSection, MenuSeparator } from '../src/Menu'
 
 const meta: Meta<typeof Menu> = {
+  title: 'COLLECTIONS/Menu',
   component: Menu,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-};
+  tags: ['autodocs'],
+}
 
-export default meta;
+export default meta
 
 export const Example = (args: any) => (
   <MenuTrigger>
     <Button variant="secondary" className="px-2">
-      <MoreHorizontal className="w-5 h-5" />
+      <MoreHorizontal className="h-5 w-5" />
     </Button>
     <Menu {...args}>
       <MenuItem id="new">New…</MenuItem>
@@ -30,17 +31,17 @@ export const Example = (args: any) => (
       <MenuItem id="print">Print…</MenuItem>
     </Menu>
   </MenuTrigger>
-);
+)
 
-export const DisabledItems = (args: any) => <Example {...args} />;
+export const DisabledItems = (args: any) => <Example {...args} />
 DisabledItems.args = {
-  disabledKeys: ['save']
-};
+  disabledKeys: ['save'],
+}
 
 export const Sections = (args: any) => (
   <MenuTrigger>
     <Button variant="secondary" className="px-2">
-      <MoreHorizontal className="w-5 h-5" />
+      <MoreHorizontal className="h-5 w-5" />
     </Button>
     <Menu {...args}>
       <MenuSection title="Your Content">
@@ -57,4 +58,4 @@ export const Sections = (args: any) => (
       </MenuSection>
     </Menu>
   </MenuTrigger>
-);
+)
