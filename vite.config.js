@@ -1,37 +1,40 @@
-import { resolve } from "path";
-import { defineConfig } from "vite";
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import dts from 'vite-plugin-dts'
 
 export default defineConfig({
+  plugins: [react(), dts({ include: ['src'] })],
   css: {
-    postcss: "./postcss.config.js",
+    postcss: './postcss.config.js',
   },
 
   optimizeDeps: {
-    include: ["@heroicons/react"],
+    include: ['@heroicons/react'],
   },
 
   build: {
-    outDir: "dist",
+    outDir: 'dist',
     sourcemap: true,
-    minify: "esbuild",
+    minify: 'esbuild',
     rollupOptions: {
       external: [
-        "react",
-        "react-dom",
-        "postcss",
-        "tailwindcss",
-        "tailwindcss-animate",
+        'react',
+        'react-dom',
+        'postcss',
+        'tailwindcss',
+        'tailwindcss-animate',
       ],
       output: {
         globals: {
-          react: "React",
+          react: 'React',
         },
       },
     },
     lib: {
-      entry: resolve(__dirname, "src", "index.tsx"),
-      name: "GSUI",
-      fileName: "gsui",
+      entry: resolve(__dirname, 'src', 'index.tsx'),
+      name: 'gss-ui',
+      fileName: 'gss-ui',
     },
   },
-});
+})

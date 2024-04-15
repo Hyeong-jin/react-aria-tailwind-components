@@ -1,15 +1,16 @@
 {
-  "name": "gsui",
+  "name": "gss-ui",
+  "version": "0.0.1",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/gsui.umd.cjs",
-  "module": "./dist/gsui.js",
+  "main": "./dist/gss-ui.umd.cjs",
+  "module": "./dist/gss-ui.js",
   "exports": {
     ".": {
-      "import": "./dist/gsui.js",
-      "require": "./dist/gsui.umd.cjs"
+      "import": "./dist/gss-ui.js",
+      "require": "./dist/gss-ui.umd.cjs"
     }
   },
   "devDependencies": {
@@ -34,6 +35,7 @@
     "tailwindcss-react-aria-components": "^1.0.0",
     "typescript": "^5.3.2",
     "vite": "^5.0.10",
+    "vite-plugin-dts": "^3.8.3",
     "vite-plugin-remove-console": "^2.2.0",
     "yarn": "^1.22.22"
   },
