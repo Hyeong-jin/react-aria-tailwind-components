@@ -64,9 +64,7 @@ export function Select<T extends object>({
         }),
       )}
     >
-      {label && (
-        <Label className="field-label flex h-9 items-center">{label}</Label>
-      )}
+      {label && <Label>{label}</Label>}
       <div className="flex flex-1 flex-col gap-1">
         <Button className={styles}>
           <SelectValue className="flex-1 text-sm placeholder-shown:italic" />

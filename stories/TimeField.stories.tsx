@@ -11,6 +11,12 @@ const meta: Meta<typeof TimeField> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    labelPosition: {
+      options: ['top', 'left', 'right', 'bottom'],
+      control: { type: 'inline-radio' },
+    },
+  },
   args: {
     label: 'Event time',
   },

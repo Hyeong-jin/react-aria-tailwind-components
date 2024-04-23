@@ -9,12 +9,7 @@ import {
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 import { Description, FieldError, Label } from './Field'
-import { composeTailwindRenderProps, fieldLabel, focusRing } from './utils'
-
-const radioGroupStyles = tv({
-  extend: fieldLabel,
-  base: 'group',
-})
+import { composeTailwindRenderProps, fieldWithLabel, focusRing } from './utils'
 
 export interface RadioGroupProps extends Omit<RACRadioGroupProps, 'children'> {
   label?: string
@@ -25,11 +20,13 @@ export interface RadioGroupProps extends Omit<RACRadioGroupProps, 'children'> {
 }
 
 export function RadioGroup({ labelPosition, ...props }: RadioGroupProps) {
+  const { base, label: labelStyles } = fieldWithLabel()
+
   return (
     <RACRadioGroup
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
-        radioGroupStyles({
+        base({
           labelPosition,
           hasDescription: !!props.description,
           ...renderProps,
@@ -37,7 +34,12 @@ export function RadioGroup({ labelPosition, ...props }: RadioGroupProps) {
         }),
       )}
     >
-      <Label className="field-label flex h-9 flex-1 items-center">
+      <Label
+        className={labelStyles({
+          labelPosition,
+          hasDescription: !!props.description,
+        })}
+      >
         {props.label}
       </Label>
       <div className="flex flex-col gap-1">

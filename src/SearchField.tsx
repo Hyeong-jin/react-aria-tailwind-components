@@ -8,13 +8,7 @@ import {
 } from 'react-aria-components'
 import { Button } from './Button'
 import { Description, FieldError, FieldGroup, Input, Label } from './Field'
-import { tv } from 'tailwind-variants'
-import { fieldLabel } from './utils'
-
-const fieldStyles = tv({
-  extend: fieldLabel,
-  base: 'group',
-})
+import { fieldWithLabel, composeTailwindRenderProps } from './utils'
 
 export interface SearchFieldProps extends AriaSearchFieldProps {
   label?: string
@@ -30,20 +24,32 @@ export function SearchField({
   errorMessage,
   ...props
 }: SearchFieldProps) {
+  const { base, label: labelStyles } = fieldWithLabel()
+
   return (
     <AriaSearchField
       {...props}
-      className={composeRenderProps(props.className, (className, renderProps) =>
-        fieldStyles({
-          labelPosition,
-          hasDescription: !!description,
-          ...renderProps,
-          className,
-        }),
+      className={composeTailwindRenderProps(
+        composeRenderProps(props.className, (className, renderProps) =>
+          base({
+            labelPosition,
+            hasDescription: !!description,
+            ...renderProps,
+            className,
+          }),
+        ),
+        'group',
       )}
     >
       {label && (
-        <Label className="flex h-9 flex-1 flex-col items-center">{label}</Label>
+        <Label
+          className={labelStyles({
+            labelPosition,
+            hasDescription: !!description,
+          })}
+        >
+          {label}
+        </Label>
       )}
       <div className="flex flex-1 flex-col gap-1">
         <FieldGroup>

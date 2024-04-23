@@ -7,36 +7,47 @@ import {
   DateSegment,
   DateValue,
   ValidationResult,
+  composeRenderProps,
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 import { Description, FieldError, Label, fieldGroupStyles } from './Field'
-import { composeTailwindRenderProps } from './utils'
+import { fieldWithLabel } from './utils'
 
 export interface DateFieldProps<T extends DateValue>
   extends AriaDateFieldProps<T> {
   label?: string
+  labelPosition?: 'top' | 'left' | 'right' | 'bottom'
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
 }
 
 export function DateField<T extends DateValue>({
   label,
+  labelPosition,
   description,
   errorMessage,
   ...props
 }: DateFieldProps<T>) {
+  const { base, label: labelStyles } = fieldWithLabel({
+    labelPosition,
+    hasDescription: !!description,
+  })
   return (
     <AriaDateField
       {...props}
-      className={composeTailwindRenderProps(
-        props.className,
-        'flex flex-col gap-1',
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        base({
+          ...renderProps,
+          className,
+        }),
       )}
     >
-      {label && <Label>{label}</Label>}
-      <DateInput />
-      {description && <Description>{description}</Description>}
-      <FieldError>{errorMessage}</FieldError>
+      {label && <Label className={labelStyles({})}>{label}</Label>}
+      <div className="flex flex-1 flex-col gap-1">
+        <DateInput />
+        {description && <Description>{description}</Description>}
+        <FieldError>{errorMessage}</FieldError>
+      </div>
     </AriaDateField>
   )
 }

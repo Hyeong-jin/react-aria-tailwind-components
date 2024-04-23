@@ -12,11 +12,11 @@ import { Button } from './Button'
 import { Description, FieldError, FieldGroup, Input, Label } from './Field'
 import { DropdownItem, DropdownSection, DropdownSectionProps } from './ListBox'
 import { Popover } from './Popover'
-import { composeTailwindRenderProps, fieldLabel } from './utils'
+import { composeTailwindRenderProps, fieldWithLabel } from './utils'
 import { tv } from 'tailwind-variants'
 
 const comboBoxStyles = tv({
-  extend: fieldLabel,
+  extend: fieldWithLabel,
 })
 
 export interface ComboBoxProps<T extends object>
@@ -37,13 +37,15 @@ export function ComboBox<T extends object>({
   items,
   ...props
 }: ComboBoxProps<T>) {
+  const { base, label: labelStyles } = fieldWithLabel({
+    labelPosition,
+    hasDescription: !!description,
+  })
   return (
     <AriaComboBox
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
-        comboBoxStyles({
-          labelPosition,
-          hasDescription: !!description,
+        base({
           ...renderProps,
           className,
         }),

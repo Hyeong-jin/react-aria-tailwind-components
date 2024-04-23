@@ -14,11 +14,7 @@ import {
   Label,
   fieldBorderStyles,
 } from './Field'
-import { fieldLabel, focusRing } from './utils'
-
-const fieldStyles = tv({
-  extend: fieldLabel,
-})
+import { fieldWithLabel, focusRing } from './utils'
 
 const inputStyles = tv({
   extend: focusRing,
@@ -55,22 +51,29 @@ export function TextField({
   errorMessage,
   ...props
 }: TextFieldProps) {
+  const { base, label: labelStyles } = fieldWithLabel()
   return (
     <AriaTextField
       {...props}
-      className={composeRenderProps(
-        props.className,
-        (className, renderProps) => {
-          return fieldStyles({
-            labelPosition,
-            hasDescription: !!description,
-            ...renderProps,
-            className,
-          })
-        },
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        base({
+          labelPosition,
+          hasDescription: !!description,
+          ...renderProps,
+          className,
+        }),
       )}
     >
-      {label && <Label>{label}</Label>}
+      {label && (
+        <Label
+          className={labelStyles({
+            labelPosition,
+            hasDescription: !!description,
+          })}
+        >
+          {label}
+        </Label>
+      )}
       <div className="flex flex-1 flex-col gap-1">
         <Input className={inputStyles} />
         {description && <Description>{description}</Description>}

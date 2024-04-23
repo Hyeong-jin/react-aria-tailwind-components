@@ -1,12 +1,14 @@
-const plugin = require('tailwindcss/plugin');
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-  content: ["./src/*.{ts,tsx}", "./stories/*.{ts,tsx}"],
+  content: ['./src/*.{ts,tsx}', './stories/*.{ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {},
+    },
   },
   plugins: [
     require('tailwindcss-react-aria-components'),
-    require('tailwindcss-animate')
-  ]
-};
+    require('tailwindcss-animate'),
+  ],
+}

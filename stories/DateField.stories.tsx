@@ -11,6 +11,12 @@ const meta: Meta<typeof DateField> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    labelPosition: {
+      options: ['top', 'left', 'bottom', 'right'],
+      control: { type: 'select' },
+    },
+  },
   args: {
     label: 'Event date',
   },
