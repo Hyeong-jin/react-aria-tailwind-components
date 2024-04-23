@@ -11,8 +11,14 @@ const meta: Meta<typeof TextField> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    labelPosition: {
+      options: ['top', 'left', 'right', 'bottom'],
+      control: 'radio',
+    },
+  },
   args: {
-    label: 'Name',
+    label: 'Field Name',
   },
 }
 
@@ -30,5 +36,19 @@ export const Validation = (args: any) => (
 )
 
 Validation.args = {
+  isRequired: true,
+}
+
+export const LabelLeft = (args: any) => (
+  <Form className="flex flex-col items-start gap-2">
+    <TextField {...args} />
+    <Button type="submit" variant="secondary">
+      Submit
+    </Button>
+  </Form>
+)
+
+LabelLeft.args = {
+  labelPosition: 'left',
   isRequired: true,
 }

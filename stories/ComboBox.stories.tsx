@@ -11,6 +11,13 @@ const meta: Meta<typeof ComboBox> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+
+  argTypes: {
+    labelPosition: {
+      options: ['top', 'left', 'right', 'bottom'],
+      control: 'radio',
+    },
+  },
   args: {
     label: 'Ice cream flavor',
   },

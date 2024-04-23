@@ -10,11 +10,16 @@ import {
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 import { Description, FieldError, Label } from './Field'
-import { composeTailwindRenderProps, focusRing } from './utils'
+import { fieldLabel, focusRing } from './utils'
+
+const checkboxGroupStyles = tv({
+  extend: fieldLabel,
+})
 
 export interface CheckboxGroupProps
   extends Omit<AriaCheckboxGroupProps, 'children'> {
   label?: string
+  labelPosition?: 'top' | 'left' | 'right' | 'bottom'
   children?: ReactNode
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
@@ -24,15 +29,21 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
   return (
     <AriaCheckboxGroup
       {...props}
-      className={composeTailwindRenderProps(
-        props.className,
-        'flex flex-col gap-2',
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        checkboxGroupStyles({
+          labelPosition: props.labelPosition,
+          hasDescription: !!props.description,
+          ...renderProps,
+          className,
+        }),
       )}
     >
       <Label>{props.label}</Label>
-      {props.children}
-      {props.description && <Description>{props.description}</Description>}
-      <FieldError>{props.errorMessage}</FieldError>
+      <div className="flex flex-1 flex-col gap-1">
+        {props.children}
+        {props.description && <Description>{props.description}</Description>}
+        <FieldError>{props.errorMessage}</FieldError>
+      </div>
     </AriaCheckboxGroup>
   )
 }

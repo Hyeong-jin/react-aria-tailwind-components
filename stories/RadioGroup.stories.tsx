@@ -10,7 +10,12 @@ export default {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    labelPosition: {
+      options: ['top', 'left', 'right', 'bottom'],
+      control: 'radio',
+    },
+  },
   args: {
     label: 'Favorite sport',
     isDisabled: false,

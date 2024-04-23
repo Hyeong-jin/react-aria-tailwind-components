@@ -11,6 +11,12 @@ const meta: Meta<typeof SearchField> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    labelPosition: {
+      options: ['top', 'left', 'right', 'bottom'],
+      control: 'radio',
+    },
+  },
   args: {
     label: 'Search',
   },

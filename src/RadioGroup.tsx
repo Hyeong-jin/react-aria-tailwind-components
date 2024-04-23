@@ -5,33 +5,48 @@ import {
   RadioGroupProps as RACRadioGroupProps,
   RadioProps,
   ValidationResult,
+  composeRenderProps,
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 import { Description, FieldError, Label } from './Field'
-import { composeTailwindRenderProps, focusRing } from './utils'
+import { composeTailwindRenderProps, fieldLabel, focusRing } from './utils'
+
+const radioGroupStyles = tv({
+  extend: fieldLabel,
+  base: 'group',
+})
 
 export interface RadioGroupProps extends Omit<RACRadioGroupProps, 'children'> {
   label?: string
+  labelPosition?: 'top' | 'left' | 'right' | 'bottom'
   children?: ReactNode
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
 }
 
-export function RadioGroup(props: RadioGroupProps) {
+export function RadioGroup({ labelPosition, ...props }: RadioGroupProps) {
   return (
     <RACRadioGroup
       {...props}
-      className={composeTailwindRenderProps(
-        props.className,
-        'group flex flex-col gap-2',
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        radioGroupStyles({
+          labelPosition,
+          hasDescription: !!props.description,
+          ...renderProps,
+          className,
+        }),
       )}
     >
-      <Label>{props.label}</Label>
-      <div className="flex gap-2 group-orientation-horizontal:gap-4 group-orientation-vertical:flex-col">
-        {props.children}
+      <Label className="field-label flex h-9 flex-1 items-center">
+        {props.label}
+      </Label>
+      <div className="flex flex-col gap-1">
+        <div className="flex gap-2 group-orientation-horizontal:gap-4 group-orientation-vertical:flex-col">
+          {props.children}
+        </div>
+        {props.description && <Description>{props.description}</Description>}
+        <FieldError>{props.errorMessage}</FieldError>
       </div>
-      {props.description && <Description>{props.description}</Description>}
-      <FieldError>{props.errorMessage}</FieldError>
     </RACRadioGroup>
   )
 }

@@ -14,10 +14,39 @@ import {
   Label,
   fieldBorderStyles,
 } from './Field'
-import { fieldLabel, focusRing } from './utils'
+import { focusRing } from './utils'
 
 const fieldStyles = tv({
-  extend: fieldLabel,
+  base: 'flex flex-col gap-1',
+  variants: {
+    labelPosition: {
+      top: '',
+      left: 'flex-row gap-2 items-center',
+      right: 'flex-row-reverse gap-2 items-center',
+      bottom: 'flex-col-reverse',
+    },
+    hasDescription: {
+      true: '',
+    },
+    isInvalid: {
+      true: '',
+    },
+  },
+  compoundVariants: [
+    {
+      labelPosition: ['left', 'right'],
+      hasDescription: true,
+      class: 'items-start [&_.field-label]:pt-2',
+    },
+    {
+      labelPosition: ['left', 'right'],
+      isInvalid: true,
+      class: 'items-start [&_.field-label]:pt-2',
+    },
+  ],
+  defaultVariants: {
+    labelPosition: 'top',
+  },
 })
 
 const inputStyles = tv({
@@ -70,7 +99,7 @@ export function TextField({
         },
       )}
     >
-      {label && <Label>{label}</Label>}
+      {label && <Label className="field-label">{label}</Label>}
       <div className="flex flex-1 flex-col gap-1">
         <Input className={inputStyles} />
         {description && <Description>{description}</Description>}

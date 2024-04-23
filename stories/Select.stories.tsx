@@ -11,6 +11,12 @@ const meta: Meta<typeof Select> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    labelPosition: {
+      options: ['top', 'left', 'right', 'bottom'],
+      control: 'radio',
+    },
+  },
   args: {
     label: 'Ice cream flavor',
   },

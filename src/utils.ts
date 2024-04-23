@@ -18,3 +18,36 @@ export function composeTailwindRenderProps<T>(
 ): string | ((v: T) => string) {
   return composeRenderProps(className, (className) => twMerge(tw, className))
 }
+
+export const fieldLabel = tv({
+  base: 'flex',
+  variants: {
+    labelPosition: {
+      top: 'flex-col gap-1',
+      left: 'flex-row gap-2 items-center',
+      right: 'flex-row-reverse gap-2 items-center',
+      bottom: 'flex-col-reverse gap-1',
+    },
+    hasDescription: {
+      true: '',
+    },
+    isInvalid: {
+      true: '',
+    },
+  },
+  compoundVariants: [
+    {
+      labelPosition: ['left', 'right'],
+      hasDescription: true,
+      class: 'items-start',
+    },
+    {
+      labelPosition: ['left', 'right'],
+      isInvalid: true,
+      class: 'items-start',
+    },
+  ],
+  defaultVariants: {
+    labelPosition: 'top',
+  },
+})

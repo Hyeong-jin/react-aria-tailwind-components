@@ -8,16 +8,22 @@ import {
   ListBoxItemProps,
   SelectValue,
   ValidationResult,
+  composeRenderProps,
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 import { Description, FieldError, Label } from './Field'
 import { DropdownItem, DropdownSection, DropdownSectionProps } from './ListBox'
 import { Popover } from './Popover'
-import { composeTailwindRenderProps, focusRing } from './utils'
+import { fieldLabel, focusRing } from './utils'
+
+const selectStyles = tv({
+  extend: fieldLabel,
+  base: 'group flex flex-col gap-1',
+})
 
 const styles = tv({
   extend: focusRing,
-  base: 'flex items-center text-start gap-4 w-full cursor-default border border-black/10 dark:border-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:shadow-none rounded-lg pl-3 pr-2 py-2 min-w-[150px] transition bg-gray-50 dark:bg-zinc-700',
+  base: 'flex items-center text-start gap-4 w-full cursor-default border border-black/10 dark:border-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:shadow-none rounded-lg pl-3 pr-2 py-[7px] min-w-[150px] transition bg-gray-50 dark:bg-zinc-700',
   variants: {
     isDisabled: {
       false:
@@ -30,6 +36,7 @@ const styles = tv({
 export interface SelectProps<T extends object>
   extends Omit<AriaSelectProps<T>, 'children'> {
   label?: string
+  labelPosition?: 'top' | 'right' | 'bottom' | 'left'
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
   items?: Iterable<T>
@@ -38,6 +45,7 @@ export interface SelectProps<T extends object>
 
 export function Select<T extends object>({
   label,
+  labelPosition,
   description,
   errorMessage,
   children,
@@ -47,21 +55,29 @@ export function Select<T extends object>({
   return (
     <AriaSelect
       {...props}
-      className={composeTailwindRenderProps(
-        props.className,
-        'group flex flex-col gap-1',
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        selectStyles({
+          labelPosition,
+          hasDescription: !!description,
+          ...renderProps,
+          className,
+        }),
       )}
     >
-      {label && <Label>{label}</Label>}
-      <Button className={styles}>
-        <SelectValue className="flex-1 text-sm placeholder-shown:italic" />
-        <ChevronDown
-          aria-hidden
-          className="h-4 w-4 text-gray-600 group-disabled:text-gray-200 dark:text-zinc-400 dark:group-disabled:text-zinc-600 forced-colors:text-[ButtonText] forced-colors:group-disabled:text-[GrayText]"
-        />
-      </Button>
-      {description && <Description>{description}</Description>}
-      <FieldError>{errorMessage}</FieldError>
+      {label && (
+        <Label className="field-label flex h-9 items-center">{label}</Label>
+      )}
+      <div className="flex flex-1 flex-col gap-1">
+        <Button className={styles}>
+          <SelectValue className="flex-1 text-sm placeholder-shown:italic" />
+          <ChevronDown
+            aria-hidden
+            className="h-4 w-4 text-gray-600 group-disabled:text-gray-200 dark:text-zinc-400 dark:group-disabled:text-zinc-600 forced-colors:text-[ButtonText] forced-colors:group-disabled:text-[GrayText]"
+          />
+        </Button>
+        {description && <Description>{description}</Description>}
+        <FieldError>{errorMessage}</FieldError>
+      </div>
       <Popover className="min-w-[--trigger-width]">
         <ListBox
           items={items}
