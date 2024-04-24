@@ -14,12 +14,7 @@ import { tv } from 'tailwind-variants'
 import { Description, FieldError, Label } from './Field'
 import { DropdownItem, DropdownSection, DropdownSectionProps } from './ListBox'
 import { Popover } from './Popover'
-import { fieldLabel, focusRing } from './utils'
-
-const selectStyles = tv({
-  extend: fieldLabel,
-  base: 'group flex flex-col gap-1',
-})
+import { fieldWithLabel, focusRing } from './utils'
 
 const styles = tv({
   extend: focusRing,
@@ -52,11 +47,13 @@ export function Select<T extends object>({
   items,
   ...props
 }: SelectProps<T>) {
+  const { base, label: labelStyles } = fieldWithLabel()
+
   return (
     <AriaSelect
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
-        selectStyles({
+        base({
           labelPosition,
           hasDescription: !!description,
           ...renderProps,
@@ -64,7 +61,19 @@ export function Select<T extends object>({
         }),
       )}
     >
-      {label && <Label>{label}</Label>}
+      {label && (
+        <Label
+          className={labelStyles({
+            labelPosition,
+            hasDescription: !!description,
+            isRequired: props.isRequired,
+            isDisabled: props.isDisabled,
+            isInvalid: props.isInvalid,
+          })}
+        >
+          {label}
+        </Label>
+      )}
       <div className="flex flex-1 flex-col gap-1">
         <Button className={styles}>
           <SelectValue className="flex-1 text-sm placeholder-shown:italic" />
