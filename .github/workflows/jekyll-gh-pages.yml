@@ -5,7 +5,7 @@ on:
   # Event for the workflow to run on
   push:
     branches:
-      - 'your-branch-name' # Replace with the branch you want to deploy from
+      - 'main' # Replace with the branch you want to deploy from
 
 permissions:
   contents: read
@@ -24,10 +24,10 @@ jobs:
       # Set up Node
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.19.0'
 
       #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
-      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
         with:
           install_command: yarn install # default: npm ci
           build_command: yarn build-storybook # default: npm run build-storybook
