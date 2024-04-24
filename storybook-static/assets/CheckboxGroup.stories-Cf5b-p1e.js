@@ -1,8 +1,0 @@
-import{j as e}from"./jsx-runtime-CKrituN3.js";import{a as p}from"./utils-B75MjL0w.js";import{B as u}from"./Button-CeeEdyyX.js";import{a as d,C as r}from"./Checkbox-sTNJQYps.js";import"./index-CBqU2yxZ.js";import"./_commonjsHelpers-BosuxZz1.js";import"./index-BtM5VmRH.js";import"./Field-DIzNbEPX.js";import"./createLucideIcon-DdzWpsi8.js";import"./check-yUcLlJWT.js";const S={title:"FORMS/CheckboxGroup",component:d,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{labelPosition:{options:["top","left","right","bottom"],control:"radio"}},args:{label:"Cities",isDisabled:!1,isRequired:!1,description:"",children:e.jsxs(e.Fragment,{children:[e.jsx(r,{value:"sf",children:"San Francisco"}),e.jsx(r,{value:"ny",children:"New York"}),e.jsx(r,{value:"sydney",children:"Sydney"}),e.jsx(r,{value:"london",children:"London"}),e.jsx(r,{value:"tokyo",children:"Tokyo"})]})}},s={args:{}},o=m=>e.jsxs(p,{className:"flex flex-col items-start gap-2",children:[e.jsx(d,{...m}),e.jsx(u,{type:"submit",variant:"secondary",children:"Submit"})]});o.args={isRequired:!0};var a,t,i;s.parameters={...s.parameters,docs:{...(a=s.parameters)==null?void 0:a.docs,source:{originalSource:`{
-  args: {}
-}`,...(i=(t=s.parameters)==null?void 0:t.docs)==null?void 0:i.source}}};var n,c,l;o.parameters={...o.parameters,docs:{...(n=o.parameters)==null?void 0:n.docs,source:{originalSource:`(args: any) => <Form className="flex flex-col items-start gap-2">
-    <CheckboxGroup {...args} />
-    <Button type="submit" variant="secondary">
-      Submit
-    </Button>
-  </Form>`,...(l=(c=o.parameters)==null?void 0:c.docs)==null?void 0:l.source}}};const F=["Default","Validation"];export{s as Default,o as Validation,F as __namedExportsOrder,S as default};

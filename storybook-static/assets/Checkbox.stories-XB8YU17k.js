@@ -1,0 +1,3 @@
+import{C as s}from"./Checkbox-vcN-sRbv.js";import"./jsx-runtime-CKrituN3.js";import"./index-CBqU2yxZ.js";import"./_commonjsHelpers-BosuxZz1.js";import"./utils-B75MjL0w.js";import"./index-BtM5VmRH.js";import"./Field-9uzV38nj.js";import"./createLucideIcon-DdzWpsi8.js";import"./check-yUcLlJWT.js";const g={title:"FORMS/Checkbox",component:s,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{},args:{isDisabled:!1,children:"Checkbox"}},r={args:{}};var e,o,t;r.parameters={...r.parameters,docs:{...(e=r.parameters)==null?void 0:e.docs,source:{originalSource:`{
+  args: {}
+}`,...(t=(o=r.parameters)==null?void 0:o.docs)==null?void 0:t.source}}};const x=["Default"];export{r as Default,x as __namedExportsOrder,g as default};
