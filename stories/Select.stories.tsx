@@ -13,7 +13,7 @@ const meta: Meta<typeof Select> = {
   tags: ['autodocs'],
   argTypes: {
     labelPosition: {
-      options: ['top', 'left', 'right', 'bottom'],
+      options: ['top', 'side'],
       control: 'radio',
     },
   },

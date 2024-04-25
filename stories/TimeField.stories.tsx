@@ -12,9 +12,13 @@ const meta: Meta<typeof TimeField> = {
   },
   tags: ['autodocs'],
   argTypes: {
+    labelAlign: {
+      options: ['start', 'center', 'end'],
+      control: 'radio',
+    },
     labelPosition: {
-      options: ['top', 'left', 'right', 'bottom'],
-      control: { type: 'inline-radio' },
+      options: ['top', 'side'],
+      control: 'radio',
     },
   },
   args: {

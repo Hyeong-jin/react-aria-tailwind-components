@@ -11,8 +11,12 @@ export default {
   },
   tags: ['autodocs'],
   argTypes: {
+    labelAlign: {
+      options: ['start', 'center', 'end'],
+      control: 'radio',
+    },
     labelPosition: {
-      options: ['top', 'left', 'right', 'bottom'],
+      options: ['top', 'side'],
       control: 'radio',
     },
   },
@@ -20,7 +24,7 @@ export default {
     label: 'Favorite sport',
     isDisabled: false,
     isRequired: false,
-    description: '',
+    description: 'Select your favorite sport.',
     children: (
       <>
         <Radio value="soccer">Soccer</Radio>

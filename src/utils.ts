@@ -21,30 +21,22 @@ export function composeTailwindRenderProps<T>(
 
 export const fieldWithLabel = tv({
   slots: {
-    base: 'flex-1 flex gap-1',
+    base: 'flex flex-1',
     label: '',
   },
   variants: {
     labelPosition: {
       top: {
-        base: 'flex-col',
+        base: 'flex-col gap-1 items-start',
       },
-      left: {
-        base: 'gap-4',
-        label: 'h-9 flex items-center',
-      },
-      right: {
-        base: 'flex-row-reverse gap-4',
-        label: 'h-9 flex items-center',
-      },
-      bottom: {
-        base: 'flex-col-reverse',
+      side: {
+        base: 'gap-4 items-center',
       },
     },
-    hasDescription: {
-      true: {
-        label: '',
-      },
+    labelAlign: {
+      start: { base: 'items-start' },
+      center: { base: 'items-center' },
+      end: { base: 'items-end' },
     },
     isInvalid: {
       true: {
@@ -54,7 +46,7 @@ export const fieldWithLabel = tv({
     isRequired: {
       true: {
         label:
-          '[&::after]:content-["*"] [&::after]:text-red-500 [&::after]:pl-1 ',
+          '[&::after]:content-["*"] [&::after]:text-red-700 [&::after]:p-1',
       },
     },
     isDisabled: {
@@ -65,6 +57,6 @@ export const fieldWithLabel = tv({
   },
   defaultVariants: {
     labelPosition: 'top',
-    hasDescription: false,
+    labelAlign: 'start',
   },
 })

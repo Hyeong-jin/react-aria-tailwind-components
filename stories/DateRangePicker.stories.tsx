@@ -10,6 +10,12 @@ const meta: Meta<typeof DateRangePicker> = {
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    labelPosition: {
+      options: ['top', 'side'],
+      control: 'radio',
+    },
+  },
   tags: ['autodocs'],
   args: {
     label: 'Trip dates',

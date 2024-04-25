@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import { Alignment, LabelPosition } from '@react-types/shared'
 import {
   Radio as RACRadio,
   RadioGroup as RACRadioGroup,
@@ -11,15 +12,35 @@ import { tv } from 'tailwind-variants'
 import { Description, FieldError, Label } from './Field'
 import { composeTailwindRenderProps, fieldWithLabel, focusRing } from './utils'
 
+const itemsBoxStyles = tv({
+  base: 'flex gap-2',
+  variants: {
+    orientation: {
+      horizontal: 'gap-4 flex-row',
+      vertical: 'flex-col',
+    },
+  },
+
+  defaultVariants: {
+    orientation: 'horizontal',
+  },
+})
+
 export interface RadioGroupProps extends Omit<RACRadioGroupProps, 'children'> {
   label?: string
-  labelPosition?: 'top' | 'left' | 'right' | 'bottom'
+  labelAlign?: Alignment
+  labelPosition?: LabelPosition
   children?: ReactNode
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
 }
 
-export function RadioGroup({ labelPosition, ...props }: RadioGroupProps) {
+export function RadioGroup({
+  labelAlign,
+  labelPosition,
+  orientation,
+  ...props
+}: RadioGroupProps) {
   const { base, label: labelStyles } = fieldWithLabel()
 
   return (
@@ -27,8 +48,8 @@ export function RadioGroup({ labelPosition, ...props }: RadioGroupProps) {
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
         base({
-          labelPosition,
-          hasDescription: !!props.description,
+          labelAlign: labelAlign || 'start',
+          labelPosition: labelPosition || 'top',
           ...renderProps,
           className,
         }),
@@ -36,14 +57,17 @@ export function RadioGroup({ labelPosition, ...props }: RadioGroupProps) {
     >
       <Label
         className={labelStyles({
-          labelPosition,
-          hasDescription: !!props.description,
+          isRequired: props.isRequired,
         })}
       >
         {props.label}
       </Label>
       <div className="flex flex-col gap-1">
-        <div className="flex gap-2 group-orientation-horizontal:gap-4 group-orientation-vertical:flex-col">
+        <div
+          className={itemsBoxStyles({
+            orientation,
+          })}
+        >
           {props.children}
         </div>
         {props.description && <Description>{props.description}</Description>}

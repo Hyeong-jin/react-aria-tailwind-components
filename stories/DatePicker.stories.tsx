@@ -11,6 +11,16 @@ const meta: Meta<typeof DatePicker> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    labelAlign: {
+      options: ['start', 'center', 'end'],
+      control: 'radio',
+    },
+    labelPosition: {
+      options: ['top', 'side'],
+      control: 'radio',
+    },
+  },
   args: {
     label: 'Event date',
   },

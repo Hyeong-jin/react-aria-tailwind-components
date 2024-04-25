@@ -1,5 +1,6 @@
 import { ChevronDown } from 'lucide-react'
 import React from 'react'
+import { Alignment, LabelPosition } from '@react-types/shared'
 import {
   Select as AriaSelect,
   SelectProps as AriaSelectProps,
@@ -31,7 +32,8 @@ const styles = tv({
 export interface SelectProps<T extends object>
   extends Omit<AriaSelectProps<T>, 'children'> {
   label?: string
-  labelPosition?: 'top' | 'right' | 'bottom' | 'left'
+  labelAlign?: Alignment
+  labelPosition?: LabelPosition
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
   items?: Iterable<T>
@@ -40,6 +42,7 @@ export interface SelectProps<T extends object>
 
 export function Select<T extends object>({
   label,
+  labelAlign,
   labelPosition,
   description,
   errorMessage,
@@ -54,8 +57,9 @@ export function Select<T extends object>({
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
         base({
+          labelAlign:
+            labelAlign || labelPosition === 'side' ? 'center' : 'start',
           labelPosition,
-          hasDescription: !!description,
           ...renderProps,
           className,
         }),
@@ -64,8 +68,6 @@ export function Select<T extends object>({
       {label && (
         <Label
           className={labelStyles({
-            labelPosition,
-            hasDescription: !!description,
             isRequired: props.isRequired,
             isDisabled: props.isDisabled,
             isInvalid: props.isInvalid,

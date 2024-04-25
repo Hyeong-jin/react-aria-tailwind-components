@@ -1,4 +1,5 @@
 import React from 'react'
+import { Alignment, LabelPosition } from '@react-types/shared'
 import {
   TextField as AriaTextField,
   TextFieldProps as AriaTextFieldProps,
@@ -39,13 +40,15 @@ const inputStyles = tv({
 
 export interface TextFieldProps extends AriaTextFieldProps {
   label?: string
+  labelAlign?: Alignment
+  labelPosition?: LabelPosition
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
-  labelPosition?: 'top' | 'left' | 'right' | 'bottom'
 }
 
 export function TextField({
   label,
+  labelAlign,
   labelPosition,
   description,
   errorMessage,
@@ -57,23 +60,15 @@ export function TextField({
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
         base({
+          labelAlign:
+            labelAlign || labelPosition === 'side' ? 'center' : 'start',
           labelPosition,
-          hasDescription: !!description,
           ...renderProps,
           className,
         }),
       )}
     >
-      {label && (
-        <Label
-          className={labelStyles({
-            labelPosition,
-            hasDescription: !!description,
-          })}
-        >
-          {label}
-        </Label>
-      )}
+      {label && <Label className={labelStyles({})}>{label}</Label>}
       <div className="flex flex-1 flex-col gap-1">
         <Input className={inputStyles} />
         {description && <Description>{description}</Description>}

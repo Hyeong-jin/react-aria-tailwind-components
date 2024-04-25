@@ -11,10 +11,10 @@ import {
   Text,
   composeRenderProps,
 } from 'react-aria-components'
-import { twMerge } from 'tailwind-merge'
 import { tv } from 'tailwind-variants'
 import { Description, Label } from './Field'
-import { focusRing } from './utils'
+import { fieldWithLabel, focusRing } from './utils'
+import { Alignment, LabelPosition } from '@react-types/shared'
 
 const colors = {
   gray: 'bg-gray-100 text-gray-600 border-gray-200 hover:border-gray-300 dark:bg-zinc-700 dark:text-zinc-300 dark:border-zinc-600 dark:hover:border-zinc-500',
@@ -60,6 +60,8 @@ export interface TagGroupProps<T>
     Pick<TagListProps<T>, 'items' | 'children' | 'renderEmptyState'> {
   color?: Color
   label?: string
+  labelAlign?: Alignment
+  labelPosition?: LabelPosition
   description?: string
   errorMessage?: string
 }
@@ -70,6 +72,8 @@ export interface TagProps extends AriaTagProps {
 
 export function TagGroup<T extends object>({
   label,
+  labelAlign,
+  labelPosition,
   description,
   errorMessage,
   items,
@@ -77,12 +81,18 @@ export function TagGroup<T extends object>({
   renderEmptyState,
   ...props
 }: TagGroupProps<T>) {
+  const { base, label: labelStyle } = fieldWithLabel()
+
   return (
     <AriaTagGroup
       {...props}
-      className={twMerge('flex flex-col gap-1', props.className)}
+      className={base({
+        labelAlign,
+        labelPosition,
+        className: props.className,
+      })}
     >
-      <Label>{label}</Label>
+      <Label className={labelStyle()}>{label}</Label>
       <ColorContext.Provider value={props.color || 'gray'}>
         <TagList
           items={items}

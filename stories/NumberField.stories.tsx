@@ -13,8 +13,8 @@ const meta: Meta<typeof NumberField> = {
   tags: ['autodocs'],
   argTypes: {
     labelPosition: {
-      options: ['top', 'left', 'bottom', 'right'],
-      control: { type: 'inline-radio' },
+      options: ['top', 'side'],
+      control: 'radio',
     },
   },
   args: {

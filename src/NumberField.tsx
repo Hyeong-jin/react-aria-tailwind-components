@@ -1,5 +1,6 @@
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import React from 'react'
+import { Alignment, LabelPosition } from '@react-types/shared'
 import {
   NumberField as AriaNumberField,
   NumberFieldProps as AriaNumberFieldProps,
@@ -20,13 +21,15 @@ import { composeTailwindRenderProps, fieldWithLabel } from './utils'
 
 export interface NumberFieldProps extends AriaNumberFieldProps {
   label?: string
-  labelPosition?: 'top' | 'left' | 'right' | 'bottom'
+  labelAlign?: Alignment
+  labelPosition?: LabelPosition
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
 }
 
 export function NumberField({
   label,
+  labelAlign,
   labelPosition,
   description,
   errorMessage,
@@ -40,8 +43,9 @@ export function NumberField({
       className={composeTailwindRenderProps(
         composeRenderProps(props.className, (className, renderProps) =>
           base({
+            labelAlign:
+              labelAlign || labelPosition === 'side' ? 'center' : 'start',
             labelPosition,
-            hasDescription: !!description,
             ...renderProps,
             className,
           }),
@@ -51,8 +55,6 @@ export function NumberField({
     >
       <Label
         className={labelStyles({
-          labelPosition,
-          hasDescription: !!description,
           isRequired: props.isRequired,
           isDisabled: props.isDisabled,
         })}

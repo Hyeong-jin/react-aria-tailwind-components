@@ -1,5 +1,6 @@
 import { Check, Minus } from 'lucide-react'
 import React, { ReactNode } from 'react'
+import { Alignment, LabelPosition } from '@react-types/shared'
 import {
   Checkbox as AriaCheckbox,
   CheckboxGroup as AriaCheckboxGroup,
@@ -15,29 +16,38 @@ import { fieldWithLabel, focusRing } from './utils'
 export interface CheckboxGroupProps
   extends Omit<AriaCheckboxGroupProps, 'children'> {
   label?: string
-  labelPosition?: 'top' | 'left' | 'right' | 'bottom'
+  labelAlign?: Alignment
+  labelPosition?: LabelPosition
   children?: ReactNode
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
 }
 
 export function CheckboxGroup(props: CheckboxGroupProps) {
-  const { base, label: labelStyles } = fieldWithLabel({
-    labelPosition: props.labelPosition,
-    hasDescription: !!props.description,
-  })
+  const { base, label: labelStyles } = fieldWithLabel()
 
   return (
     <AriaCheckboxGroup
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
         base({
+          labelAlign: props.labelAlign || 'start',
+          labelPosition: props.labelPosition || 'top',
           ...renderProps,
           className,
         }),
       )}
     >
-      {props.label && <Label className={labelStyles()}>{props.label}</Label>}
+      {props.label && (
+        <Label
+          className={labelStyles({
+            isRequired: props.isRequired,
+            isDisabled: props.isDisabled,
+          })}
+        >
+          {props.label}
+        </Label>
+      )}
       <div className="flex flex-1 flex-col gap-1">
         {props.children}
         {props.description && <Description>{props.description}</Description>}
@@ -82,8 +92,11 @@ export function Checkbox(props: CheckboxProps) {
   return (
     <AriaCheckbox
       {...props}
-      className={composeRenderProps(props.className, (className, renderProps) =>
-        checkboxStyles({ ...renderProps, className }),
+      className={composeRenderProps(
+        props.className,
+        (className, renderProps) => {
+          return checkboxStyles({ ...renderProps, className })
+        },
       )}
     >
       {({ isSelected, isIndeterminate, ...renderProps }) => (

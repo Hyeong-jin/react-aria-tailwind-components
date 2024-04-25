@@ -1,6 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react'
 import { Chart } from '../src/Chart'
-import * as echarts from 'echarts'
 
 /**
  *

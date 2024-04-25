@@ -13,8 +13,8 @@ const meta: Meta<typeof DateField> = {
   tags: ['autodocs'],
   argTypes: {
     labelPosition: {
-      options: ['top', 'left', 'bottom', 'right'],
-      control: { type: 'select' },
+      options: ['top', 'side'],
+      control: 'radio',
     },
   },
   args: {

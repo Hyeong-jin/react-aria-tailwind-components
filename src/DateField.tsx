@@ -1,4 +1,5 @@
 import React from 'react'
+import { Alignment, LabelPosition } from '@react-types/shared'
 import {
   DateField as AriaDateField,
   DateFieldProps as AriaDateFieldProps,
@@ -16,33 +17,43 @@ import { fieldWithLabel } from './utils'
 export interface DateFieldProps<T extends DateValue>
   extends AriaDateFieldProps<T> {
   label?: string
-  labelPosition?: 'top' | 'left' | 'right' | 'bottom'
+  labelAlign?: Alignment
+  labelPosition?: LabelPosition
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
 }
 
 export function DateField<T extends DateValue>({
   label,
+  labelAlign,
   labelPosition,
   description,
   errorMessage,
   ...props
 }: DateFieldProps<T>) {
-  const { base, label: labelStyles } = fieldWithLabel({
-    labelPosition,
-    hasDescription: !!description,
-  })
+  const { base, label: labelStyles } = fieldWithLabel()
   return (
     <AriaDateField
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
         base({
+          labelAlign:
+            labelAlign || labelPosition === 'side' ? 'center' : 'start',
+          labelPosition,
           ...renderProps,
           className,
         }),
       )}
     >
-      {label && <Label className={labelStyles({})}>{label}</Label>}
+      {label && (
+        <Label
+          className={labelStyles({
+            isRequired: props.isRequired,
+          })}
+        >
+          {label}
+        </Label>
+      )}
       <div className="flex flex-1 flex-col gap-1">
         <DateInput />
         {description && <Description>{description}</Description>}

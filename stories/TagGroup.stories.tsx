@@ -9,6 +9,17 @@ const meta: Meta<typeof Example> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+
+  argTypes: {
+    labelAlign: {
+      options: ['start', 'center', 'end'],
+      control: 'radio',
+    },
+    labelPosition: {
+      options: ['top', 'side'],
+      control: 'radio',
+    },
+  },
 }
 
 export default meta

@@ -1,5 +1,6 @@
 import { ChevronDown } from 'lucide-react'
 import React from 'react'
+import { Alignment, LabelPosition } from '@react-types/shared'
 import {
   ComboBox as AriaComboBox,
   ComboBoxProps as AriaComboBoxProps,
@@ -12,17 +13,13 @@ import { Button } from './Button'
 import { Description, FieldError, FieldGroup, Input, Label } from './Field'
 import { DropdownItem, DropdownSection, DropdownSectionProps } from './ListBox'
 import { Popover } from './Popover'
-import { composeTailwindRenderProps, fieldWithLabel } from './utils'
-import { tv } from 'tailwind-variants'
-
-const comboBoxStyles = tv({
-  extend: fieldWithLabel,
-})
+import { fieldWithLabel } from './utils'
 
 export interface ComboBoxProps<T extends object>
   extends Omit<AriaComboBoxProps<T>, 'children'> {
   label?: string
-  labelPosition?: 'top' | 'right' | 'bottom' | 'left'
+  labelPosition?: LabelPosition
+  labelAlign?: Alignment
   description?: string | null
   errorMessage?: string | ((validation: ValidationResult) => string)
   children: React.ReactNode | ((item: T) => React.ReactNode)
@@ -30,6 +27,7 @@ export interface ComboBoxProps<T extends object>
 
 export function ComboBox<T extends object>({
   label,
+  labelAlign,
   labelPosition,
   description,
   errorMessage,
@@ -37,21 +35,27 @@ export function ComboBox<T extends object>({
   items,
   ...props
 }: ComboBoxProps<T>) {
-  const { base, label: labelStyles } = fieldWithLabel({
-    labelPosition,
-    hasDescription: !!description,
-  })
+  const { base, label: labelStyles } = fieldWithLabel()
   return (
     <AriaComboBox
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
         base({
+          labelAlign:
+            labelAlign || labelPosition === 'side' ? 'center' : 'start',
+          labelPosition: labelPosition,
           ...renderProps,
           className,
         }),
       )}
     >
-      <Label>{label}</Label>
+      <Label
+        className={labelStyles({
+          isRequired: props.isRequired,
+        })}
+      >
+        {label}
+      </Label>
       <div className="flex flex-1 flex-col gap-1">
         <FieldGroup>
           <Input />

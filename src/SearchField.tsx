@@ -1,5 +1,6 @@
 import { SearchIcon, XIcon } from 'lucide-react'
 import React from 'react'
+import { Alignment, LabelPosition } from '@react-types/shared'
 import {
   SearchField as AriaSearchField,
   SearchFieldProps as AriaSearchFieldProps,
@@ -12,14 +13,16 @@ import { fieldWithLabel, composeTailwindRenderProps } from './utils'
 
 export interface SearchFieldProps extends AriaSearchFieldProps {
   label?: string
-  labelPosition?: 'top' | 'left' | 'right' | 'bottom'
+  labelAlign?: Alignment
+  labelPosition?: LabelPosition
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
 }
 
 export function SearchField({
   label,
-  labelPosition = 'top',
+  labelAlign,
+  labelPosition,
   description,
   errorMessage,
   ...props
@@ -32,8 +35,9 @@ export function SearchField({
       className={composeTailwindRenderProps(
         composeRenderProps(props.className, (className, renderProps) =>
           base({
+            labelAlign:
+              labelAlign || labelPosition === 'side' ? 'center' : 'start',
             labelPosition,
-            hasDescription: !!description,
             ...renderProps,
             className,
           }),
@@ -45,7 +49,6 @@ export function SearchField({
         <Label
           className={labelStyles({
             labelPosition,
-            hasDescription: !!description,
           })}
         >
           {label}

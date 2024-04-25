@@ -1,10 +1,12 @@
 import { CalendarIcon } from 'lucide-react'
 import React from 'react'
+import { Alignment, LabelPosition } from '@react-types/shared'
 import {
   DateRangePicker as AriaDateRangePicker,
   DateRangePickerProps as AriaDateRangePickerProps,
   DateValue,
   ValidationResult,
+  composeRenderProps,
 } from 'react-aria-components'
 import { Button } from './Button'
 import { DateInput } from './DateField'
@@ -12,30 +14,54 @@ import { Dialog } from './Dialog'
 import { Description, FieldError, FieldGroup, Label } from './Field'
 import { Popover } from './Popover'
 import { RangeCalendar } from './RangeCalendar'
-import { composeTailwindRenderProps } from './utils'
+import { fieldWithLabel } from './utils'
+import { twMerge } from 'tailwind-merge'
 
 export interface DateRangePickerProps<T extends DateValue>
   extends AriaDateRangePickerProps<T> {
   label?: string
+  labelAlign: Alignment
+  labelPosition?: LabelPosition
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
 }
 
 export function DateRangePicker<T extends DateValue>({
   label,
+  labelAlign,
+  labelPosition,
   description,
   errorMessage,
   ...props
 }: DateRangePickerProps<T>) {
+  const { base, label: labelStyles } = fieldWithLabel()
+
   return (
     <AriaDateRangePicker
       {...props}
-      className={composeTailwindRenderProps(
-        props.className,
-        'group flex flex-col gap-1',
+      className={composeRenderProps(props.className, (className, renderProps) =>
+        twMerge(
+          base({
+            labelAlign:
+              labelAlign || labelPosition === 'side' ? 'center' : 'start',
+            labelPosition,
+            ...renderProps,
+            className,
+          }),
+          'group',
+        ),
       )}
     >
-      {label && <Label>{label}</Label>}
+      {label && (
+        <Label
+          className={labelStyles({
+            isRequired: props.isRequired,
+            isDisabled: props.isDisabled,
+          })}
+        >
+          {label}
+        </Label>
+      )}
       <FieldGroup className="w-auto min-w-[208px]">
         <DateInput slot="start" className="px-2 py-1.5 text-sm" />
         <span

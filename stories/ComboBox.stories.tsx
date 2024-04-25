@@ -11,10 +11,13 @@ const meta: Meta<typeof ComboBox> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-
   argTypes: {
     labelPosition: {
-      options: ['top', 'left', 'right', 'bottom'],
+      options: ['top', 'side'],
+      control: 'radio',
+    },
+    labelAlign: {
+      options: ['start', 'center', 'end'],
       control: 'radio',
     },
   },
