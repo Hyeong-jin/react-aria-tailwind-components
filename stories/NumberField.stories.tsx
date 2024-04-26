@@ -12,6 +12,10 @@ const meta: Meta<typeof NumberField> = {
   },
   tags: ['autodocs'],
   argTypes: {
+    labelAlign: {
+      options: ['start', 'center', 'end'],
+      control: 'radio',
+    },
     labelPosition: {
       options: ['top', 'side'],
       control: 'radio',

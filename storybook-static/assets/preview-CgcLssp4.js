@@ -1,1 +1,0 @@
-import{t as e}from"./chunk-ZGA76URP-BcBjLwMD.js";const t={parameters:{actions:{argTypesRegex:"^on[A-Z].*"},controls:{matchers:{}},docs:{theme:window.matchMedia("(prefers-color-scheme: dark)").matches?e.dark:e.light}}};export{t as default};

@@ -43,8 +43,7 @@ export function NumberField({
       className={composeTailwindRenderProps(
         composeRenderProps(props.className, (className, renderProps) =>
           base({
-            labelAlign:
-              labelAlign || labelPosition === 'side' ? 'center' : 'start',
+            labelAlign,
             labelPosition,
             ...renderProps,
             className,
