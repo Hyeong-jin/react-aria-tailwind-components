@@ -51,7 +51,7 @@ export const fieldWithLabel = tv({
     },
     isDisabled: {
       true: {
-        label: 'text-gray-200 dark:text-gray-700',
+        label: 'text-gray-200 dark:text-gray-700 [&::after]:content-[""]',
       },
     },
   },
