@@ -37,6 +37,29 @@ const thumbStyles = tv({
   },
 })
 
+const labelStyles = tv({
+  variants: {
+    isDisabled: {
+      true: 'text-zinc-500 dark:text-zinc-700',
+    },
+  },
+  defaultVariants: {
+    isDisabled: false,
+  },
+})
+
+const outputStyles = tv({
+  base: 'text-sm font-medium text-gray-500 orientation-vertical:hidden dark:text-zinc-400',
+  variants: {
+    isDisabled: {
+      true: 'text-zinc-500 dark:text-zinc-700',
+    },
+  },
+  defaultVariants: {
+    isDisabled: false,
+  },
+})
+
 export interface SliderProps<T> extends AriaSliderProps<T> {
   label?: string
   thumbLabels?: string[]
@@ -55,8 +78,18 @@ export function Slider<T extends number | number[]>({
         'grid-cols-[1fr_auto] flex-col items-center gap-2 orientation-horizontal:grid orientation-horizontal:w-64 orientation-vertical:flex',
       )}
     >
-      <Label>{label}</Label>
-      <SliderOutput className="text-sm font-medium text-gray-500 orientation-vertical:hidden dark:text-zinc-400">
+      <Label
+        className={labelStyles({
+          isDisabled: props.isDisabled,
+        })}
+      >
+        {label}
+      </Label>
+      <SliderOutput
+        className={outputStyles({
+          isDisabled: props.isDisabled,
+        })}
+      >
         {({ state }) =>
           state.values.map((_, i) => state.getThumbValueLabel(i)).join(' – ')
         }
