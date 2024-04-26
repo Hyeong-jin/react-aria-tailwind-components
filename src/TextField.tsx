@@ -68,7 +68,17 @@ export function TextField({
         }),
       )}
     >
-      {label && <Label className={labelStyles({})}>{label}</Label>}
+      {label && (
+        <Label
+          className={labelStyles({
+            isRequired: props.isRequired,
+            isDisabled: props.isDisabled,
+            isInvalid: props.isInvalid,
+          })}
+        >
+          {label}
+        </Label>
+      )}
       <div className="flex flex-1 flex-col gap-1">
         <Input className={inputStyles} />
         {description && <Description>{description}</Description>}

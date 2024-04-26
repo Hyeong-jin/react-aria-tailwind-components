@@ -9,6 +9,7 @@ import {
   composeRenderProps,
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
+import { twMerge } from 'tailwind-merge'
 import { Description, FieldError, Label } from './Field'
 import { composeTailwindRenderProps, fieldWithLabel, focusRing } from './utils'
 
@@ -58,6 +59,8 @@ export function RadioGroup({
       <Label
         className={labelStyles({
           isRequired: props.isRequired,
+          isInvalid: props.isInvalid,
+          isDisabled: props.isDisabled,
         })}
       >
         {props.label}

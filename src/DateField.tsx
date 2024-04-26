@@ -49,6 +49,7 @@ export function DateField<T extends DateValue>({
         <Label
           className={labelStyles({
             isRequired: props.isRequired,
+            isDisabled: props.isDisabled,
           })}
         >
           {label}

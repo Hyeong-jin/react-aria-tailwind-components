@@ -52,6 +52,7 @@ export function ComboBox<T extends object>({
       <Label
         className={labelStyles({
           isRequired: props.isRequired,
+          isDisabled: props.isDisabled,
         })}
       >
         {label}

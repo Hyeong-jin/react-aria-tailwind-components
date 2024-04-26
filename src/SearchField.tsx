@@ -49,6 +49,7 @@ export function SearchField({
         <Label
           className={labelStyles({
             labelPosition,
+            isDisabled: props.isDisabled,
           })}
         >
           {label}
