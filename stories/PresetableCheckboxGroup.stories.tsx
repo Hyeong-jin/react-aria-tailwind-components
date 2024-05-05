@@ -38,13 +38,15 @@ export default {
   },
 }
 
+const presets = [
+  { label: 'aa', value: 'sf,ny' },
+  { label: 'bb', value: 'sf,sydney,london' },
+  { label: 'cc', value: 'tokyo' },
+]
+
 export const Default = {
   args: {
-    presets: [
-      { label: 'aa', value: 'sf,ny' },
-      { label: 'bb', value: 'sydney,london' },
-      { label: 'cc', value: 'tokyo' },
-    ],
+    presets,
   },
 }
 
@@ -59,9 +61,5 @@ export const Validation = (args: any) => (
 
 Validation.args = {
   isRequired: true,
-  presets: [
-    { label: 'aa', value: 'sf,ny' },
-    { label: 'bb', value: 'sydney,london' },
-    { label: 'cc', value: 'tokyo' },
-  ],
+  presets,
 }

@@ -48,13 +48,14 @@ function PresetableCheckboxGroup({
   }
 
   React.useEffect(() => {
-    updateSelectAll(value.length === items.length)
+    console.log('value changed', value)
     updatePresetValues()
     setIsIndeterminate(value.length > 0 && value.length < items.length)
+    updateSelectAll(value.length === items.length)
   }, [value])
 
   React.useEffect(() => {
-    setValue([...presetValues.map((p) => p.split(',')).flat()])
+    setValue([...new Set([...presetValues.map((p) => p.split(',')).flat()])])
   }, [presetValues])
 
   React.useEffect(() => {
@@ -79,10 +80,8 @@ function PresetableCheckboxGroup({
   }, [])
 
   const toggleSelectAll = () => {
-    setIsSelectAll((prev) => {
-      updateSelectAll(!prev)
-      return !prev
-    })
+    setIsSelectAll(!isSelectAll)
+    updateSelectAll(!updatedSelectAll)
   }
   return (
     <div className="rounded-lg border p-5">
@@ -103,7 +102,6 @@ function PresetableCheckboxGroup({
       <Separator className="my-2" />
       <CheckboxGroup
         label="Presets"
-        // value={presetValues}
         value={updatedPresets}
         onChange={setPresetValues}
       >
