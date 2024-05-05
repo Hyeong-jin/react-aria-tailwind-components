@@ -44,7 +44,6 @@ function PresetableCheckboxGroup({
         newPresets.push(preset.value)
       }
     })
-    // setTimeout(() => setPresetValues(newPresets), 0)
     updatePresets(newPresets)
   }
 
