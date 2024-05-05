@@ -28,6 +28,8 @@ export default {
     description: '',
     children: (
       <>
+        <Checkbox value="seoul">Seoul</Checkbox>
+        <Checkbox value="incheon">Incheon</Checkbox>
         <Checkbox value="sf">San Francisco</Checkbox>
         <Checkbox value="ny">New York</Checkbox>
         <Checkbox value="sydney">Sydney</Checkbox>
@@ -39,9 +41,9 @@ export default {
 }
 
 const presets = [
-  { label: 'aa', value: 'sf,ny' },
+  { label: 'aa', value: 'sf,ny,seoul' },
   { label: 'bb', value: 'sf,sydney,london' },
-  { label: 'cc', value: 'tokyo' },
+  { label: 'cc', value: 'sf,tokyo' },
 ]
 
 export const Default = {
