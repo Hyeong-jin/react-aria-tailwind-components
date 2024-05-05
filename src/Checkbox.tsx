@@ -1,5 +1,6 @@
 import { Check, Minus } from 'lucide-react'
 import React, { ReactNode } from 'react'
+
 import { Alignment, LabelPosition } from '@react-types/shared'
 import {
   Checkbox as AriaCheckbox,
@@ -12,6 +13,7 @@ import {
 import { tv } from 'tailwind-variants'
 import { Description, FieldError, Label } from './Field'
 import { fieldWithLabel, focusRing } from './utils'
+import { usePresetableCheckboxGroup } from './PresetableCheckboxGroup'
 
 export interface CheckboxGroupProps
   extends Omit<AriaCheckboxGroupProps, 'children'> {
@@ -89,6 +91,11 @@ const iconStyles =
   'w-4 h-4 text-white group-disabled:text-gray-400 dark:text-slate-900 dark:group-disabled:text-slate-600 forced-colors:text-[HighlightText]'
 
 export function Checkbox(props: CheckboxProps) {
+  const { addItem } = usePresetableCheckboxGroup()
+  React.useEffect(() => {
+    addItem?.(props.value as string)
+  }, [])
+
   return (
     <AriaCheckbox
       {...props}
