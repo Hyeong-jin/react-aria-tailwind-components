@@ -12,6 +12,10 @@ export default {
   },
   tags: ['autodocs'],
   argTypes: {
+    orientation: {
+      options: ['vertical', 'horizontal'],
+      control: 'radio',
+    },
     labelPosition: {
       options: ['top', 'side'],
       control: 'radio',
@@ -35,15 +39,19 @@ export default {
         <Checkbox value="sydney">Sydney</Checkbox>
         <Checkbox value="london">London</Checkbox>
         <Checkbox value="tokyo">Tokyo</Checkbox>
+        <Checkbox value="paris">Paris</Checkbox>
+        <Checkbox value="leon">Leon</Checkbox>
       </>
     ),
   },
 }
 
 const presets = [
-  { label: 'aa', value: 'sf,ny,seoul' },
-  { label: 'bb', value: 'sf,sydney,london' },
-  { label: 'cc', value: 'sf,tokyo' },
+  { label: 'Korea', value: 'incheon, seoul' },
+  { label: 'Austrailia', value: 'sydney' },
+  { label: 'USA', value: 'sf,ny' },
+  { label: 'United Kingdom', value: 'london' },
+  { label: 'France', value: 'paris, leon' },
 ]
 
 export const Default = {

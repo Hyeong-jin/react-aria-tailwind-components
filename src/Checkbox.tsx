@@ -1,7 +1,7 @@
 import { Check, Minus } from 'lucide-react'
 import React, { ReactNode } from 'react'
-
-import { Alignment, LabelPosition } from '@react-types/shared'
+import { twMerge } from 'tailwind-merge'
+import { Alignment, LabelPosition, Orientation } from '@react-types/shared'
 import {
   Checkbox as AriaCheckbox,
   CheckboxGroup as AriaCheckboxGroup,
@@ -12,14 +12,15 @@ import {
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 import { Description, FieldError, Label } from './Field'
-import { fieldWithLabel, focusRing } from './utils'
 import { usePresetableCheckboxGroup } from './PresetableCheckboxGroup'
+import { fieldWithLabel, focusRing } from './utils'
 
 export interface CheckboxGroupProps
   extends Omit<AriaCheckboxGroupProps, 'children'> {
   label?: string
   labelAlign?: Alignment
   labelPosition?: LabelPosition
+  orientation?: Orientation
   children?: ReactNode
   description?: string
   errorMessage?: string | ((validation: ValidationResult) => string)
@@ -35,6 +36,7 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
         base({
           labelAlign: props.labelAlign || 'start',
           labelPosition: props.labelPosition || 'top',
+          orientation: props.orientation || 'vertical',
           ...renderProps,
           className,
         }),
@@ -50,7 +52,12 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
           {props.label}
         </Label>
       )}
-      <div className="flex flex-1 flex-col gap-1">
+      <div
+        className={twMerge(
+          'flex w-full flex-1 flex-wrap gap-1',
+          props.orientation === 'horizontal' ? '[&_label]:mr-5' : 'flex-col',
+        )}
+      >
         {props.children}
         {props.description && <Description>{props.description}</Description>}
         <FieldError>{props.errorMessage}</FieldError>
@@ -91,6 +98,7 @@ const iconStyles =
   'w-4 h-4 text-white group-disabled:text-gray-400 dark:text-slate-900 dark:group-disabled:text-slate-600 forced-colors:text-[HighlightText]'
 
 export function Checkbox(props: CheckboxProps) {
+  // Add this component to the PressableCheckboxGroup context
   const { addItem } = usePresetableCheckboxGroup()
   React.useEffect(() => {
     addItem?.(props.value as string)

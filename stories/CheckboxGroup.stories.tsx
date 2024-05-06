@@ -11,6 +11,10 @@ export default {
   },
   tags: ['autodocs'],
   argTypes: {
+    orientation: {
+      options: ['vertical', 'horizontal'],
+      control: 'radio',
+    },
     labelPosition: {
       options: ['top', 'side'],
       control: 'radio',

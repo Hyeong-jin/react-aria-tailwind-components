@@ -25,12 +25,20 @@ export const fieldWithLabel = tv({
     label: '',
   },
   variants: {
+    orientation: {
+      horizontal: {
+        base: '',
+      },
+      vertical: {
+        base: '',
+      },
+    },
     labelPosition: {
       top: {
         base: 'flex-col gap-1 items-start',
       },
       side: {
-        base: 'gap-4 items-center',
+        base: 'flex-row gap-4 items-center',
       },
     },
     labelAlign: {
