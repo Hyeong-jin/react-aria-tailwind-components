@@ -9,6 +9,7 @@ export default {
   },
   tags: ['autodocs'],
   args: {
+    className: 'h-[600px]',
     children: (
       <>
         <SlidingCard
