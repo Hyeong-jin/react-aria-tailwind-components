@@ -1,8 +1,12 @@
 import { CheckboxGroupProps as AriaCheckboxGroupProps, CheckboxProps, ValidationResult } from 'react-aria-components';
+import { Alignment, LabelPosition, Orientation } from '@react-types/shared';
 import { default as React, ReactNode } from 'react';
 
 export interface CheckboxGroupProps extends Omit<AriaCheckboxGroupProps, 'children'> {
     label?: string;
+    labelAlign?: Alignment;
+    labelPosition?: LabelPosition;
+    orientation?: Orientation;
     children?: ReactNode;
     description?: string;
     errorMessage?: string | ((validation: ValidationResult) => string);

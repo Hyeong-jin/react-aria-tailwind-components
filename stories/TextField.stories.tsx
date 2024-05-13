@@ -16,6 +16,10 @@ const meta: Meta<typeof TextField> = {
       options: ['top', 'side'],
       control: 'radio',
     },
+    labelAlign: {
+      options: ['start', 'center', 'end'],
+      control: 'radio',
+    },
   },
   args: {
     label: 'Field Name',
@@ -27,7 +31,7 @@ export default meta
 export const Example = (args: any) => <TextField {...args} />
 
 export const Validation = (args: any) => (
-  <Form className="flex flex-col items-start gap-2">
+  <Form className="flex flex-col gap-2">
     <TextField {...args} />
     <Button type="submit" variant="secondary">
       Submit
@@ -39,8 +43,8 @@ Validation.args = {
   isRequired: true,
 }
 
-export const LabelLeft = (args: any) => (
-  <Form className="flex flex-col items-start gap-2">
+export const LabelPosition_Side = (args: any) => (
+  <Form className="flex flex-col gap-2">
     <TextField {...args} />
     <Button type="submit" variant="secondary">
       Submit
@@ -48,7 +52,7 @@ export const LabelLeft = (args: any) => (
   </Form>
 )
 
-LabelLeft.args = {
-  labelPosition: 'left',
+LabelPosition_Side.args = {
+  labelPosition: 'side',
   isRequired: true,
 }

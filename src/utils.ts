@@ -22,7 +22,7 @@ export function composeTailwindRenderProps<T>(
 export const fieldWithLabel = tv({
   slots: {
     base: 'flex flex-1',
-    label: '',
+    label: 'pt-0',
   },
   variants: {
     orientation: {
@@ -42,9 +42,18 @@ export const fieldWithLabel = tv({
       },
     },
     labelAlign: {
-      start: { base: 'items-start' },
-      center: { base: 'items-center' },
-      end: { base: 'items-end' },
+      start: {
+        base: 'items-start',
+        label: 'pt-[0.375em]',
+      },
+      center: {
+        base: 'items-center',
+        label: 'pt-0',
+      },
+      end: {
+        base: 'items-end',
+        label: 'pt-0',
+      },
     },
     isInvalid: {
       true: {

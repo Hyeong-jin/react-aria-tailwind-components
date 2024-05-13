@@ -9,7 +9,6 @@ import {
   composeRenderProps,
 } from 'react-aria-components'
 import { tv } from 'tailwind-variants'
-import { twMerge } from 'tailwind-merge'
 import { Description, FieldError, Label } from './Field'
 import { composeTailwindRenderProps, fieldWithLabel, focusRing } from './utils'
 

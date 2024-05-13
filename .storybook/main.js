@@ -14,6 +14,7 @@ const excludedProps = new Set([
 
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
+  staticDirs: ['../public'],
   stories: [
     "../stories/**/*.mdx",
     "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",

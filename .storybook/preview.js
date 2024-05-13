@@ -4,7 +4,8 @@ import '../src/index.css'
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
-    // actions: { argTypesRegex: "^on[A-Z].*" },
+    //  TODO: need to add actions to each component
+    // actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {},
     },

@@ -60,8 +60,7 @@ export function TextField({
       {...props}
       className={composeRenderProps(props.className, (className, renderProps) =>
         base({
-          labelAlign:
-            labelAlign || labelPosition === 'side' ? 'center' : 'start',
+          labelAlign,
           labelPosition,
           ...renderProps,
           className,
