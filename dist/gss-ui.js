@@ -25575,7 +25575,7 @@ function nt(e, t) {
 const rt = ie({
   slots: {
     base: "flex flex-1",
-    label: ""
+    label: "pt-0"
   },
   variants: {
     orientation: {
@@ -25595,9 +25595,18 @@ const rt = ie({
       }
     },
     labelAlign: {
-      start: { base: "items-start" },
-      center: { base: "items-center" },
-      end: { base: "items-end" }
+      start: {
+        base: "items-start",
+        label: "pt-[0.375em]"
+      },
+      center: {
+        base: "items-center",
+        label: "pt-0"
+      },
+      end: {
+        base: "items-end",
+        label: "pt-0"
+      }
     },
     isInvalid: {
       true: {
@@ -27388,7 +27397,7 @@ function A9({
       className: me(
         i.className,
         (u, s) => l({
-          labelAlign: t || n === "side" ? "center" : "start",
+          labelAlign: t,
           labelPosition: n,
           ...s,
           className: u

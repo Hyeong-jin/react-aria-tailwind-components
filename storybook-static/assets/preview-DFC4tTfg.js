@@ -1,0 +1,1 @@
+import{t as e}from"./index-C8Vb6r63.js";import"./index-Dl6G-zuu.js";const a={parameters:{controls:{matchers:{}},docs:{theme:window.matchMedia("(prefers-color-scheme: dark)").matches?e.dark:e.light}}};export{a as default};

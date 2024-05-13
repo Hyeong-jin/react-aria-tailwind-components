@@ -1,0 +1,5 @@
+import{j as r}from"./jsx-runtime-Du8NFWEI.js";import{B as c,a}from"./Breadcrumbs-Cbt8hUZ8.js";import"./index-Dl6G-zuu.js";import"./index-CKGhC0Va.js";import"./index-D1_ZHIBm.js";import"./Link-BZ9YiY_r.js";import"./utils-D1ukYlRK.js";import"./chevron-right-8iXnCjD5.js";import"./createLucideIcon-Dov-y89W.js";const h={title:"Navigation/Breadcrumbs",component:c,parameters:{layout:"centered"},tags:["autodocs"]},e=o=>r.jsxs(c,{...o,children:[r.jsx(a,{href:"/",children:"Home"}),r.jsx(a,{href:"/react-aria",children:"React Aria"}),r.jsx(a,{children:"Breadcrumbs"})]});var m,s,t;e.parameters={...e.parameters,docs:{...(m=e.parameters)==null?void 0:m.docs,source:{originalSource:`(args: any) => <Breadcrumbs {...args}>
+    <Breadcrumb href="/">Home</Breadcrumb>
+    <Breadcrumb href="/react-aria">React Aria</Breadcrumb>
+    <Breadcrumb>Breadcrumbs</Breadcrumb>
+  </Breadcrumbs>`,...(t=(s=e.parameters)==null?void 0:s.docs)==null?void 0:t.source}}};const f=["Example"];export{e as Example,f as __namedExportsOrder,h as default};
