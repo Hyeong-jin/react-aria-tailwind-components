@@ -1,6 +1,0 @@
-import{j as t}from"./jsx-runtime-Du8NFWEI.js";import{a as c}from"./index-CKGhC0Va.js";import{B as l}from"./Button-Cj8flKvI.js";import{D as s}from"./DateField-CBanjDty.js";import"./index-Dl6G-zuu.js";import"./index-D1_ZHIBm.js";import"./utils-D1ukYlRK.js";import"./Field-D12m9y4t.js";const j={title:"DATE AND TIME/DateField",component:s,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{labelPosition:{options:["top","side"],control:"radio"}},args:{label:"Event date"}},a=r=>t.jsx(s,{...r}),e=r=>t.jsxs(c,{className:"flex flex-col items-start gap-2",children:[t.jsx(s,{...r}),t.jsx(l,{type:"submit",variant:"secondary",children:"Submit"})]});e.args={isRequired:!0};var o,i,m;a.parameters={...a.parameters,docs:{...(o=a.parameters)==null?void 0:o.docs,source:{originalSource:"(args: any) => <DateField {...args} />",...(m=(i=a.parameters)==null?void 0:i.docs)==null?void 0:m.source}}};var n,p,d;e.parameters={...e.parameters,docs:{...(n=e.parameters)==null?void 0:n.docs,source:{originalSource:`(args: any) => <Form className="flex flex-col items-start gap-2">
-    <DateField {...args} />
-    <Button type="submit" variant="secondary">
-      Submit
-    </Button>
-  </Form>`,...(d=(p=e.parameters)==null?void 0:p.docs)==null?void 0:d.source}}};const F=["Example","Validation"];export{a as Example,e as Validation,F as __namedExportsOrder,j as default};

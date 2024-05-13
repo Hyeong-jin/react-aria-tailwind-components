@@ -68,12 +68,10 @@ export function SlidingCard({
   return (
     <RACRadio {...props} className={base()}>
       {(renderProps) => (
-        <div className={`${card({...renderProps })} ${className}`}>
+        <div className={`${card({ ...renderProps })} ${className}`}>
           <div className={cardBox(renderProps)}>
             <div className={cardNumber()}>{props.value}</div>
-            <div className={description(renderProps )}>
-              {children}
-            </div>
+            <div className={description(renderProps)}>{children}</div>
           </div>
         </div>
       )}
